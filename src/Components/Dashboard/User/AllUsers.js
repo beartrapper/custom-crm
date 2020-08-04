@@ -14,16 +14,17 @@ import TopNav from "../Nav/TopNav";
 export default function AllUsers() {
   return (
     <div class="">
-        
       <TopNav searchBarVisibility={false} />
-  
+
       <div class=" page-body-wrapper">
         <Nav />
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="row">
-                
-              <div class="col-lg-6 grid-margin stretch-card">
+              <div
+                class="col-lg-6 grid-margin stretch-card"
+                style={{ zIndex: "999" }}
+              >
                 <div class="card">
                   <div class="card-body">
                     <table class="table">
@@ -92,7 +93,7 @@ export default function AllUsers() {
                   </div>
                 </div>
               </div>
-              <div class="col-lg-6">
+              <div class="col-lg-6" style={{ zIndex: "999" }}>
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">

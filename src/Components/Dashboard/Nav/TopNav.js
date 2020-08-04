@@ -1,10 +1,15 @@
-import React from 'react'
-import { FaPowerOff } from 'react-icons/fa'
+import React from "react";
+import { FaPowerOff } from "react-icons/fa";
 
-export default function TopNav(props){
-    return(
-        <>
-        <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+export default function TopNav(props) {
+  return (
+    <>
+      <img
+        className="img-for-landing-page-right"
+        src="https://i.ibb.co/f81YFM2/Untitled-4.jpg"
+        style={{ zIndex: "5" }}
+      />
+      <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
           {/* <a class="navbar-brand brand-logo" href="../../index.html">
             <img src="../../../assets/images/logo.svg" alt="logo" />{" "}
@@ -14,18 +19,20 @@ export default function TopNav(props){
           </a> */}
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-center">
-        {
-            props.searchBarVisibility ?      <form class="ml-auto search-form d-none d-md-block" action="#">
-            <div class="form-group">
-              <input
-                type="search"
-                class="form-control"
-                placeholder="Search Here"
-              />
-            </div>
-          </form>:<></>
-        }
-     
+          {props.searchBarVisibility ? (
+            <form class="ml-auto search-form d-none d-md-block" action="#">
+              <div class="form-group">
+                <input
+                  type="search"
+                  class="form-control"
+                  placeholder="Search Here"
+                />
+              </div>
+            </form>
+          ) : (
+            <></>
+          )}
+
           <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
               <a
@@ -105,7 +112,6 @@ export default function TopNav(props){
                     </p>
                   </div>
                 </a>
-             
               </div>
             </li>
             <li class="nav-item dropdown">
@@ -172,9 +178,11 @@ export default function TopNav(props){
               </div>
             </li>
             <li class="nav-item dropdown d-none d-xl-inline-block user-dropdown">
-                <a class="mr-2">
-                    <button class="btn"><FaPowerOff /></button>
-                </a>
+              <a class="mr-2">
+                <button class="btn">
+                  <FaPowerOff />
+                </button>
+              </a>
               {/* <a
                 class="nav-link dropdown-toggle"
                 id="UserDropdown"
@@ -233,6 +241,6 @@ export default function TopNav(props){
           </button>
         </div>
       </nav>
-     </>
-    );
+    </>
+  );
 }

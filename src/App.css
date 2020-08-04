@@ -13216,7 +13216,7 @@ button[type="button"].wj7hLb {
       width: 100%; } }
 
 .content-wrapper {
-  background: #F3F3F3;
+  /* background: #F3F3F3; */
   padding: 1.5rem 1.7rem;
   width: 100%;
   -webkit-box-flex: 1;
@@ -13405,9 +13405,48 @@ button[type="button"].wj7hLb {
   right: 0;
   height: 100vh;
   width: 100vw;
-  clip-path: circle(50% at 85% 35%);
+  /* clip-path: circle(50% at 85% 35%); */
+  /* clip-path: circle(41.1% at 100% 27%); */
+  clip-path: circle(33.9% at 99% 29%);
+
   z-index:-1;
   border: none !important;
   /* clip-path: polygon(76% 0, 0 0, 0 100%, 40% 100%); */
 
+}
+
+.table-widthy {
+  width: 100%;
+  overflow-y: auto;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 0.5vw;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #7878f3; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #b30000; 
+}
+
+@media only screen and (max-width: 600px) {
+  ::-webkit-scrollbar {
+    width: 2vw;
+    height: 1vw;
+  }
+  
 }

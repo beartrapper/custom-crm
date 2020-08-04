@@ -4,10 +4,8 @@ import { Link } from "react-router-dom";
 export default function Nav() {
   return (
     <>
- 
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
-          
           {/* <li class="nav-item nav-profile">
             <a href="#" class="nav-link">
               <div class="profile-image">
@@ -19,26 +17,24 @@ export default function Nav() {
           </li> */}
           {/* <li class="nav-item nav-category">Main Menu</li> */}
           <li class="nav-item">
-
-          <Link to="/dashboard" class="nav-link">
-
+            <Link to="/dashboard" class="nav-link">
               <i class="menu-icon typcn typcn-document-text"></i>
               <span class="menu-title">Dashboard</span>
-          </Link>
-
-
+            </Link>
           </li>
 
           <li class="nav-item">
-
-<Link to="/dashboard/users" class="nav-link">
-
-    <i class="menu-icon typcn typcn-document-text"></i>
-    <span class="menu-title">Users</span>
-</Link>
-
-
-</li>
+            <Link to="/dashboard/users" class="nav-link">
+              <i class="menu-icon typcn typcn-document-text"></i>
+              <span class="menu-title">Users</span>
+            </Link>
+          </li>
+          <li class="nav-item">
+            <Link to="/dashboard/products" class="nav-link">
+              <i class="menu-icon typcn typcn-document-text"></i>
+              <span class="menu-title">Products</span>
+            </Link>
+          </li>
           <li class="nav-item">
             <a
               class="nav-link"
