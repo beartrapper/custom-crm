@@ -44,34 +44,34 @@ export default function Nav() {
               aria-controls="ui-basic"
             >
               <i class="menu-icon typcn typcn-coffee"></i>
-              <span class="menu-title">Basic UI Elements</span>
+              <span class="menu-title">Revenue Report</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
-                  <a
+                  <Link
                     class="nav-link"
-                    href="../../pages/ui-features/buttons.html"
-                  >
-                    Buttons
-                  </a>
+                    to="/dashboard/best-customers"
+>
+                    Best Customers
+                  </Link>
                 </li>
                 <li class="nav-item">
-                  <a
+                  <Link
                     class="nav-link"
-                    href="../../pages/ui-features/dropdowns.html"
-                  >
-                    Dropdowns
-                  </a>
+                    to="/dashboard/revenue-by-event"
+>
+                    Revenue By Month
+                  </Link>
                 </li>
                 <li class="nav-item">
-                  <a
+                  <Link
                     class="nav-link"
-                    href="../../pages/ui-features/typography.html"
-                  >
-                    Typography
-                  </a>
+                    to="/dashboard/revenue-by-months"
+>
+                    Revenue By Event
+                  </Link>
                 </li>
               </ul>
             </div>

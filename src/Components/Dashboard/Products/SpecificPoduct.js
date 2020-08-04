@@ -14,11 +14,7 @@ import TopNav from "../Nav/TopNav";
 export default function SpecificProducts() {
   return (
     <div class="">
-      <img
-        className="img-for-landing-page-right"
-        src="https://i.ibb.co/56Nn4Yk/pp.png"
-        style={{ zIndex: "5" }}
-      />
+   
       <TopNav searchBarVisibility={false} />
 
       <div class=" page-body-wrapper">
