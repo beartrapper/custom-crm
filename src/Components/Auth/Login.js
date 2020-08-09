@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from 'react-router-dom';
 export default function Login() {
   return (
     <>
@@ -364,7 +364,7 @@ export default function Login() {
                                   <div
                                     class="VfPpkd-dgl2Hf-ppHlrf-sM5MNb"
                                     data-is-touch-wrapper="true"
-                                  >
+                                  ><Link to="/dashboard" className="text-white">
                                     <button
                                       class="VfPpkd-LgbsSe VfPpkd-LgbsSe-OWXEXe-k8QpJ VfPpkd-LgbsSe-OWXEXe-dgl2Hf nCP5yc AjY5Oe DuMIQc qIypjc TrZEUc btn-success"
                                       jscontroller="soHxf"
@@ -380,6 +380,7 @@ export default function Login() {
                                       </span>
                                       <div class="VfPpkd-RLmnJb"></div>
                                     </button>
+                                    </Link>
                                   </div>
                                 </div>
                               </div>

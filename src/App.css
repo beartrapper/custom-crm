@@ -13424,6 +13424,7 @@ button[type="button"].wj7hLb {
 /* width */
 ::-webkit-scrollbar {
   width: 0.5vw;
+  height: 0.5vw;
 }
 
 /* Track */
@@ -13434,13 +13435,13 @@ button[type="button"].wj7hLb {
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #7878f3; 
-  border-radius: 10px;
+  background: #7878f3 !important; 
+  border-radius: 10px !important;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #b30000; 
+  background: #b30000 ; 
 }
 
 @media only screen and (max-width: 600px) {
@@ -13449,4 +13450,153 @@ button[type="button"].wj7hLb {
     height: 1vw;
   }
   
+}
+
+
+.placeholder-class::placeholder {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+.board-container {
+  background-color: white !important;
+}
+
+.comPlainTextContentEditable,  .comPlainTextContentEditable--has-placeholder {
+  padding: 10px !important;
+  
+}
+
+.comPlainTextContentEditable:focus {
+  border: none !important;
+  outline:none !important;
+}
+.sc-fznxsB, .sc-fznJRM, .lloQnn,.sc-fzpkJw, .hqbuHK {
+  background-color: #007aff !important;
+  /* color: black !important; */
+  border: 1px solid #007aff;
+}
+
+.react-trello-board {
+  max-height: 80vh;
+  overflow-y: auto !important;
+}
+
+.bg-greyer {
+  background-color: rgb(243, 243, 243) !important;
+}
+
+.carding {
+  border-radius: 10px !important;
+}
+
+.overflow-control-kar{
+  overflow-y: auto !important;
+  max-height: 60vh;
+  border-radius: 20px 0 0 20px !important;
+}
+
+.hover-change-size:hover {
+  transform: scale(1.03);
+  transition: 0.2s ;
+}
+
+.hover-change-size {
+  transition: 0.2s ;
+
+}
+
+.react-trello-card {
+  transition: 0.2s ;
+
+}
+.react-trello-card:hover {
+  transform: scale(0.95);
+  transition: 0.2s ;
+}
+
+
+.hover-change-icon{
+  transition: 0.2s ;
+  cursor: pointer;
+}
+
+.hover-change-icon:hover {
+  transform: scale(1.3);
+  transition: 0.2s ;
+}
+
+.calendar-UI {
+  border: none !important;
+  border-radius: 0 20px 20px 0 !important;
+  padding: 10px;
+}
+
+.avatar {
+  vertical-align: middle;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.TrZEUc {
+  border: none !important;
+  outline: none !important;
+}
+
+.mix-min-ieit {
+  min-height: 70vh !important;
+}
+
+.rpinded- {
+  border-radius: 0px 30px 30px 5px !important;
+  transition: 0.2s ;
+  cursor: pointer;
+
+}
+
+.rpinded-s {
+  border-radius: 5px 30px 30px 0px !important;
+  background-color: #0166d1 !important;
+  transition: 0.2s ;
+
+}
+
+.rpinded-:hover {
+  transform: scale(1.02);
+  transition: 0.2s ;
+}
+
+.rpinded-s:hover {
+  transform: scale(1.02);
+  transition: 0.2s ;
+}
+
+
+.bg-f3f3f3 {
+  background-color: #F3F3F3 !important;
+  border-radius: 20px !important ;
+}
+
+.sweet-loading {
+  min-height: 100vh !important;
+  min-width: 100vw !important;
+  background-color: #1c45ef;
+}
+
+.hover-as:hover {
+  background-color: rgb(235, 235, 235) !important;
+}
+
+
+.customModal {
+  /* background: rgb(219, 219, 219) !important; */
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 5px 10px #888888;
+
+}
+
+.bg-grey {
+  background-color: rgb(233, 233, 233) !important;
 }

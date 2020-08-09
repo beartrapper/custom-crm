@@ -30,6 +30,18 @@ export default function Nav() {
             </Link>
           </li>
           <li class="nav-item">
+            <Link to="/dashboard/contacts" class="nav-link">
+              <i class="menu-icon typcn typcn-document-text"></i>
+              <span class="menu-title">Contacts</span>
+            </Link>
+          </li>
+          <li class="nav-item">
+            <Link to="/dashboard/invoices" class="nav-link">
+              <i class="menu-icon typcn typcn-document-text"></i>
+              <span class="menu-title">Invoices</span>
+            </Link>
+          </li>
+          <li class="nav-item">
             <Link to="/dashboard/products" class="nav-link">
               <i class="menu-icon typcn typcn-document-text"></i>
               <span class="menu-title">Products</span>
@@ -50,102 +62,52 @@ export default function Nav() {
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
-                  <Link
-                    class="nav-link"
-                    to="/dashboard/best-customers"
->
+                  <Link class="nav-link" to="/dashboard/best-customers">
                     Best Customers
                   </Link>
                 </li>
                 <li class="nav-item">
-                  <Link
-                    class="nav-link"
-                    to="/dashboard/revenue-by-event"
->
+                  <Link class="nav-link" to="/dashboard/revenue-by-event">
                     Revenue By Month
                   </Link>
                 </li>
                 <li class="nav-item">
-                  <Link
-                    class="nav-link"
-                    to="/dashboard/revenue-by-months"
->
+                  <Link class="nav-link" to="/dashboard/revenue-by-months">
                     Revenue By Event
                   </Link>
                 </li>
               </ul>
             </div>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../../pages/forms/basic_elements.html">
-              <i class="menu-icon typcn typcn-shopping-bag"></i>
-              <span class="menu-title">Form elements</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../../pages/charts/chartjs.html">
-              <i class="menu-icon typcn typcn-th-large-outline"></i>
-              <span class="menu-title">Charts</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../../pages/tables/basic-table.html">
-              <i class="menu-icon typcn typcn-bell"></i>
-              <span class="menu-title">Tables</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../../pages/icons/font-awesome.html">
-              <i class="menu-icon typcn typcn-user-outline"></i>
-              <span class="menu-title">Icons</span>
-            </a>
-          </li>
+
           <li class="nav-item">
             <a
               class="nav-link"
               data-toggle="collapse"
-              href="#auth"
+              href="#aut"
               aria-expanded="false"
-              aria-controls="auth"
+              aria-controls="aut"
             >
-              <i class="menu-icon typcn typcn-document-add"></i>
-              <span class="menu-title">User Pages</span>
+              <i class="menu-icon typcn typcn-coffee"></i>
+              <span class="menu-title">Projects</span>
               <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="auth">
+            <div class="collapse" id="aut">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
-                  <a
-                    class="nav-link"
-                    href="../../pages/samples/blank-page.html"
-                  >
-                    {" "}
-                    Blank Page{" "}
-                  </a>
+                  <Link class="nav-link" to="/dashboard/create-project">
+                    Create New
+                  </Link>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="../../pages/samples/login.html">
-                    {" "}
-                    Login{" "}
-                  </a>
+                  <Link class="nav-link" to="/dashboard/project">
+                    Project 2
+                  </Link>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="../../pages/samples/register.html">
-                    {" "}
-                    Register{" "}
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="../../pages/samples/error-404.html">
-                    {" "}
-                    404{" "}
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="../../pages/samples/error-500.html">
-                    {" "}
-                    500{" "}
-                  </a>
+                  <Link class="nav-link" to="/dashboard/project">
+                    Project 3
+                  </Link>
                 </li>
               </ul>
             </div>
