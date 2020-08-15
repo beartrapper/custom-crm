@@ -1,8 +1,74 @@
-import React from "react";
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { Link, Redirect } from "react-router-dom";
+import { auth } from "../../firebase";
 export default function Login() {
+  const [redirect, setRedirect] = useState(false);
+  const [error, setError] = useState(false);
+  const [checking, setChecking] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [userUID, setUserUID] = useState("");
+
+  useEffect(() => {
+    //if the user is logged in they will be redirected
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        setRedirect(true);
+        setUserUID(user.uid);
+      }
+    });
+  }, []);
+
+  //handling change in email
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+    setError(false);
+  };
+
+  //handling change in password
+  const handlePassword = (e) => {
+    setError(false);
+    setPassword(e.target.value);
+  };
+
+  //submitting the result to firebase auth api
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (email == "" || password == "") {
+      setError(true);
+    } else {
+      //setting the loader = true
+      setChecking(true);
+
+      auth
+        .signInWithEmailAndPassword(email, password)
+        .then((res) => {
+          console.log(res);
+          setChecking(false);
+          setRedirect(true);
+          setUserUID(res.user.uid);
+        })
+        .catch((err) => {
+          setChecking(false);
+          setError(true);
+        });
+    }
+  };
+
   return (
     <>
+      {redirect ? (
+        <Redirect
+          to={{
+            pathname: "/dashboard",
+            state: {
+              userUID,
+            },
+          }}
+        />
+      ) : (
+        <></>
+      )}
       <div
         id="yDmH0d"
         class="nyoS7c UzCXuf EIlDfe shadow-lg "
@@ -13,12 +79,13 @@ export default function Login() {
       >
         <div
           className="img-for-signin-right bg-primary"
-        //   src="https://i.ibb.co/qFMhd0F/pp-1.png"
+          //   src="https://i.ibb.co/qFMhd0F/pp-1.png"
         ></div>
 
-        <div className="img-for-signin bg-primary-lighter" 
-        // src="https://i.ibb.co/56Nn4Yk/pp.png"
-         ></div>
+        <div
+          className="img-for-signin bg-primary-lighter"
+          // src="https://i.ibb.co/56Nn4Yk/pp.png"
+        ></div>
         <div
           class="H2SoFe LZgQXe TFhTPc"
           data-continent="Southern Asia"
@@ -188,14 +255,19 @@ export default function Login() {
                                                     data-initial-dir="ltr"
                                                     data-initial-value=""
                                                     badinput="false"
+                                                    onChange={handleEmail}
                                                   />
-                                                  <div
-                                                    jsname="YRMmle"
-                                                    class="AxOyFc snByac"
-                                                    aria-hidden="true"
-                                                  >
-                                                    Email
-                                                  </div>
+                                                  {email == "" ? (
+                                                    <div
+                                                      jsname="YRMmle"
+                                                      class="AxOyFc snByac"
+                                                      aria-hidden="true"
+                                                    >
+                                                      Email
+                                                    </div>
+                                                  ) : (
+                                                    <></>
+                                                  )}
                                                 </div>
                                                 <div class="i9lrp mIZh1c"></div>
                                                 <div
@@ -224,14 +296,19 @@ export default function Login() {
                                                     data-initial-dir="ltr"
                                                     data-initial-value=""
                                                     badinput="false"
+                                                    onChange={handlePassword}
                                                   />
-                                                  <div
-                                                    jsname="YRMmle"
-                                                    class="AxOyFc snByac"
-                                                    aria-hidden="true"
-                                                  >
-                                                    Password
-                                                  </div>
+                                                  {password == "" ? (
+                                                    <div
+                                                      jsname="YRMmle"
+                                                      class="AxOyFc snByac"
+                                                      aria-hidden="true"
+                                                    >
+                                                      Password
+                                                    </div>
+                                                  ) : (
+                                                    <></>
+                                                  )}
                                                 </div>
                                                 <div class="i9lrp mIZh1c"></div>
                                                 <div
@@ -325,6 +402,13 @@ export default function Login() {
                                 </span>
                               </form>
                             </div>
+                            {error ? (
+                              <div className="alert alert-danger col-12 text-center">
+                                Wrong credentials :(
+                              </div>
+                            ) : (
+                              <></>
+                            )}
                             {/* <span jsslot="">
                               <div class="vwtvsf">
                                 <div class="PrDSKc">
@@ -364,23 +448,30 @@ export default function Login() {
                                   <div
                                     class="VfPpkd-dgl2Hf-ppHlrf-sM5MNb"
                                     data-is-touch-wrapper="true"
-                                  ><Link to="/dashboard" className="text-white">
+                                  >
                                     <button
                                       class="VfPpkd-LgbsSe VfPpkd-LgbsSe-OWXEXe-k8QpJ VfPpkd-LgbsSe-OWXEXe-dgl2Hf nCP5yc AjY5Oe DuMIQc qIypjc TrZEUc btn-success"
                                       jscontroller="soHxf"
                                       jsaction="click:cOuCgd; mousedown:UX7yZ; mouseup:lbsD7e; mouseenter:tfO1Yc; mouseleave:JywGue; touchstart:p6p2H; touchmove:FwuNnf; touchend:yfqBxc; touchcancel:JMtRjd; focus:AHmuwe; blur:O22p3e; contextmenu:mg9Pef;"
                                       type="button"
+                                      onClick={handleSubmit}
                                     >
-                                      <div class="VfPpkd-Jh9lGc btn-primary"></div>
+                                      <div
+                                        class={
+                                          "VfPpkd-Jh9lGc " +
+                                          (checking
+                                            ? " disabled border-none"
+                                            : " btn-primary")
+                                        }
+                                      ></div>
                                       <span
                                         jsname="V67aGc"
                                         class="VfPpkd-vQzf8d"
                                       >
-                                        Next
+                                        {checking ? "Checking" : "Next"}
                                       </span>
                                       <div class="VfPpkd-RLmnJb"></div>
                                     </button>
-                                    </Link>
                                   </div>
                                 </div>
                               </div>

@@ -1,17 +1,97 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Nav from "../Nav/Nav";
-import {
-  FaBeer,
-  FaWindowClose,
-  FaTimesCircle,
-  FaHeart,
-  FaSortNumericDown,
-  FaRegHandPaper,
-  FaVenus,
-} from "react-icons/fa";
 import TopNav from "../Nav/TopNav";
+import axios from "axios";
+import { functions } from "../../../firebase";
 
 export default function AllUsers() {
+  const [error, setError] = useState(false);
+  const [checking, setChecking] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [allUser, setAllUsers] = useState([]);
+
+  useEffect(() => {
+    getAllUsers();
+  }, []);
+
+  const getAllUsers = () => {
+    axios
+      .get(
+        "https://cors-anywhere.herokuapp.com/https://us-central1-custom-crm-611a5.cloudfunctions.net/listUsers"
+      )
+      .then((res) => {
+        setAllUsers(res.data.users);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  //handling change in email
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+    setError(false);
+  };
+
+  //handling change in password
+  const handlePassword = (e) => {
+    setError(false);
+    setPassword(e.target.value);
+  };
+
+  //submitting the result to firebase auth api
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    //setting the loader = true
+    setChecking(true);
+
+    //calling the cloud function
+    axios
+      .get(
+        `https://cors-anywhere.herokuapp.com/https://us-central1-custom-crm-611a5.cloudfunctions.net/addUser?email=${email}&password=${password}`
+      )
+      .then((res) => {
+        console.log(res.data.error);
+        if (res.data.error) setError(true);
+        else getAllUsers();
+        setEmail("");
+        setPassword("");
+        setChecking(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setEmail("");
+        setPassword("");
+        setChecking(false);
+        setError(true);
+      });
+  };
+
+  const handleDelete = (index) => {
+    // deleting from the current state
+    let usersArray = allUser.filter(function (e) {
+      return e != allUser[index];
+    });
+    setAllUsers(usersArray);
+
+    //deleting from the db
+    axios
+      .get(
+        `https://cors-anywhere.herokuapp.com/https://us-central1-custom-crm-611a5.cloudfunctions.net/deleteUser?uid=${allUser[index].uid}`
+      )
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleCancel = (e) => {
+    e.preventDefault();
+    setEmail("");
+    setPassword("");
+  };
+
   return (
     <div class="">
       <TopNav searchBarVisibility={false} />
@@ -31,9 +111,6 @@ export default function AllUsers() {
                       <thead>
                         <tr>
                           <th>
-                            <b>Profile</b>
-                          </th>
-                          <th>
                             <b>Email</b>
                           </th>
 
@@ -43,51 +120,23 @@ export default function AllUsers() {
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td class="text-primary">Jacob</td>
-                          <td>dummy@gmail.com</td>
-                          <td>
-                            <button class="btn badge badge-danger">
-                              Delete
-                            </button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="text-primary">Jacob</td>
-                          <td>dummy@gmail.com</td>
-                          <td>
-                            <button class="btn badge badge-danger">
-                              Delete
-                            </button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="text-primary">Jacob</td>
-                          <td>dummy@gmail.com</td>
-                          <td>
-                            <button class="btn badge badge-danger">
-                              Delete
-                            </button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="text-primary">Jacob</td>
-                          <td>dummy@gmail.com</td>
-                          <td>
-                            <button class="btn badge badge-danger">
-                              Delete
-                            </button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="text-primary">Jacob</td>
-                          <td>dummy@gmail.com</td>
-                          <td>
-                            <button class="btn badge badge-danger">
-                              Delete
-                            </button>
-                          </td>
-                        </tr>
+                        {allUser.map((item, key) => {
+                          return (
+                            <>
+                              <tr>
+                                <td class="text-primary">{item.email}</td>
+                                <td>
+                                  <button
+                                    onClick={() => handleDelete(key)}
+                                    class="btn badge badge-danger"
+                                  >
+                                    Delete
+                                  </button>
+                                </td>
+                              </tr>
+                            </>
+                          );
+                        })}
                       </tbody>
                     </table>
                   </div>
@@ -113,6 +162,8 @@ export default function AllUsers() {
                             class="form-control"
                             id="exampleInputEmail2"
                             placeholder="Enter email"
+                            onChange={handleEmail}
+                            value={email}
                           />
                         </div>
                       </div>
@@ -129,13 +180,31 @@ export default function AllUsers() {
                             class="form-control"
                             id="exampleInputPassword2"
                             placeholder="Password"
+                            onChange={handlePassword}
+                            value={password}
                           />
                         </div>
                       </div>
-                      <button type="submit" class="btn btn-primary mr-2">
-                        Submit
+                      <button
+                        onClick={handleSubmit}
+                        type="submit"
+                        class={
+                          "btn  mr-2 " +
+                          (checking ? " disabled text-dark" : " btn-primary")
+                        }
+                      >
+                        {checking ? "Submitting" : "Submit"}
                       </button>
-                      <button class="btn btn-light">Cancel</button>
+                      <button onClick={handleCancel} class="btn btn-light">
+                        Cancel
+                      </button>
+                      {error ? (
+                        <div className="col-12 alert alert-danger mt-4">
+                          Could you please increase the password length?
+                        </div>
+                      ) : (
+                        <></>
+                      )}
                     </form>
                   </div>
                 </div>
