@@ -60,7 +60,7 @@ export default function Login() {
       {redirect ? (
         <Redirect
           to={{
-            pathname: "/dashboard",
+            pathname: "/dashboard/contacts",
             state: {
               userUID,
             },

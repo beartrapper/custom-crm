@@ -1,8 +1,50 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { firestore } from "../../../firebase";
 import Nav from "../Nav/Nav";
 import TopNav from "../Nav/TopNav";
+import Sales from "./Sales";
 
 export default function SingleContact() {
+
+  const location = useLocation();
+  const [currentContact, setCurrentContact] = useState(location.state.contact)
+  const [currentRecords, setCurrentRecords] = useState([])
+  const [currentPage, setCurrentPage] = useState("contact")
+
+  useEffect(() => {
+    getSpecificContactSales();
+  }, [])
+
+  const getSpecificContactSales = () => {
+    firestore.collection("elopage_records").where("item.EMAIL", "==", currentContact.EMAIL).limit(5)
+    // .orderBy("item.EMAIL", "desc")
+    .get()
+    .then(docs => {
+      let temp = [];
+
+      docs.forEach(doc => {
+
+          const obj = {
+            data: doc.data(),
+            id: doc.id
+          }
+          temp.push(obj)
+    
+      })
+      console.log(temp)
+      setCurrentRecords(temp)
+
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
+  const handleCurrentPage = e => {
+    setCurrentPage(e.target.id);
+  }
+
   return (
     <div class="">
       <TopNav searchBarVisibility={true} />
@@ -11,7 +53,17 @@ export default function SingleContact() {
         <Nav />
         <div class="main-panel">
           <div class="content-wrapper">
-            <div class="row">
+          <div className="col-12 mb-3">
+                <button onClick={handleCurrentPage} id="sales" className="col-3 shadow btn btn-primary">Sales</button>
+                <button onClick={handleCurrentPage} id="contact" className="col-3 bg-white shadow btn ml-1">Contact</button>
+                {/* <button className="col-3"></button>
+                <button className="col-3"></button> */}
+              </div>
+          {currentPage == "sales" ? <Sales />: <></>}
+          {currentPage == "contact" ? 
+          <>
+                <div class="row">
+           
               <div class="col-lg-6" style={{ zIndex: "999" }}>
                 <div class="card">
                   <div class="card-body">
@@ -37,7 +89,7 @@ export default function SingleContact() {
                             type="email"
                             class="form-control"
                             id="exampleInputEmail2"
-                            value="dummy@gmail.com"
+                            value={currentContact.EMAIL}
                           />
                         </div>
                       </div>
@@ -53,7 +105,7 @@ export default function SingleContact() {
                             type="texr"
                             class="form-control"
                             id="exampleInputPassword2"
-                            value="dummy name"
+                            value={currentContact["FIRST NAME"] + " " + currentContact["LAST NAME"]}
                           />
                         </div>
                       </div>
@@ -66,11 +118,10 @@ export default function SingleContact() {
                         </label>
                         <div class="col-sm-9">
                           <input
-                            type="number"
+                            type="text"
                             class="form-control"
                             id="exampleInputPassword2"
-                            // placeholder="Password"
-                            value="123456789"
+                            value={currentContact.PHONE}
                           />
                         </div>
                       </div>
@@ -86,7 +137,7 @@ export default function SingleContact() {
                             type="text"
                             class="form-control"
                             id="exampleInputPassword2"
-                            // placeholder="Password"
+                            value={currentContact["STREET"] + ", " + currentContact["CITY"] + ", " + currentContact["COUNTRY"]}
                           />
                         </div>
                       </div>
@@ -95,18 +146,16 @@ export default function SingleContact() {
                 </div>
               </div>
 
-              <div class="col-lg-6" style={{ zIndex: "999" }}>
-                <div class="card">
+              <div class="col-lg-6 " style={{ zIndex: "999" }}>
+                <div class="card overflow-x-hidden">
                   <div class="card-body">
-                    <table class="table">
+                    <table class="table ">
                       <thead>
                         <tr>
                           <th>
                             <b>Date</b>
                           </th>
-                          <th>
-                            <b>City</b>
-                          </th>
+                       
 
                           <th>
                             <b>Name</b>
@@ -117,38 +166,18 @@ export default function SingleContact() {
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td class="text-primary">12-12-12</td>
-                          <td>Berlin</td>
-                          <td>Dummy</td>
-                          <td>120$</td>
-                        </tr>
-                        <tr>
-                          <td class="text-primary">12-12-12</td>
-                          <td>Berlin</td>
-                          <td>Dummy</td>
-                          <td>120$</td>
-                        </tr>
-
-                        <tr>
-                          <td class="text-primary">12-12-12</td>
-                          <td>Berlin</td>
-                          <td>Dummy</td>
-                          <td>120$</td>
-                        </tr>
-                        <tr>
-                          <td class="text-primary">12-12-12</td>
-                          <td>Berlin</td>
-                          <td>Dummy</td>
-                          <td>120$</td>
-                        </tr>
-                        <tr>
-                          <td class="text-primary">12-12-12</td>
-                          <td>Berlin</td>
-                          <td>Dummy</td>
-                          <td>120$</td>
-                        </tr>
-                      </tbody>
+                        {currentRecords.map(item => {
+                          return (
+                            <tr>
+                            {/* <td class="text-primary">{item.data.item.}</td> */}
+                          <td>{item.data.item["EVENT DATE"]}</td>
+                            <td>{item.data.item.PRODUCT}</td>
+                            <td>{item.data.item.AMOUNT}</td>
+                          </tr>
+                          );
+                        })}
+                      
+                 </tbody>
                     </table>
                   </div>
                 </div>
@@ -223,6 +252,8 @@ export default function SingleContact() {
                 </div>
                 </div>
           </div>
+         </>
+        :<></>}
           </div>
         </div>
       </div>

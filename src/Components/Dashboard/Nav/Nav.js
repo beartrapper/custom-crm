@@ -16,7 +16,14 @@ export default function Nav() {
             </a>
           </li> */}
           {/* <li class="nav-item nav-category">Main Menu</li> */}
+          
           <li class="nav-item">
+            <Link to="/dashboard/contacts" class="nav-link">
+              <i class="menu-icon typcn typcn-document-text"></i>
+              <span class="menu-title">Contacts</span>
+            </Link>
+          </li>
+          {/* <li class="nav-item">
             <Link to="/dashboard" class="nav-link">
               <i class="menu-icon typcn typcn-document-text"></i>
               <span class="menu-title">Dashboard</span>
@@ -29,12 +36,8 @@ export default function Nav() {
               <span class="menu-title">Users</span>
             </Link>
           </li>
-          <li class="nav-item">
-            <Link to="/dashboard/contacts" class="nav-link">
-              <i class="menu-icon typcn typcn-document-text"></i>
-              <span class="menu-title">Contacts</span>
-            </Link>
-          </li>
+         
+        
           <li class="nav-item">
             <Link to="/dashboard/invoices" class="nav-link">
               <i class="menu-icon typcn typcn-document-text"></i>
@@ -112,6 +115,7 @@ export default function Nav() {
               </ul>
             </div>
           </li>
+       */}
         </ul>
       </nav>
     </>

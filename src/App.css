@@ -13600,3 +13600,7 @@ button[type="button"].wj7hLb {
 .bg-grey {
   background-color: rgb(233, 233, 233) !important;
 }
+
+.overflow-x-hidden {
+  overflow-x: scroll;
+}

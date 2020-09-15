@@ -19,7 +19,7 @@ export default function TopNav(props) {
           </a> */}
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-center">
-          {!props.searchBarVisibility ? (
+          {/* {!props.searchBarVisibility ? (
             <form class="ml-auto search-form d-none d-md-block" action="#">
               <div class="form-group">
                 <input
@@ -31,9 +31,10 @@ export default function TopNav(props) {
             </form>
           ) : (
             <></>
-          )}
+          )} */}
 
-          <ul class="navbar-nav ml-auto">
+       
+          {/* <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
               <a
                 class="nav-link count-indicator"
@@ -45,53 +46,8 @@ export default function TopNav(props) {
                 <i class="mdi mdi-bell-outline"></i>
                 <span class="count">2</span>
               </a>
-              <div
-                class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0"
-                aria-labelledby="messageDropdown"
-              >
-                <a class="dropdown-item py-3">
-                  <p class="mb-0 font-weight-medium float-left">
-                    You have <b>2</b> new newsfeed updates{" "}
-                  </p>
-                  {/* <span class="badge badge-pill badge-primary float-right">
-                    View all
-                  </span> */}
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item preview-item">
-                  {/* <div class="preview-thumbnail">
-                    <img
-                      src="../../../assets/images/faces/face10.jpg"
-                      alt="image"
-                      class="img-sm profile-pic"
-                    />{" "}
-                  </div> */}
-                  <div class="preview-item-content flex-grow py-2">
-                    <p class="preview-subject ellipsis font-weight-medium text-dark">
-                      <b>Task assigned</b>{" "}
-                    </p>
-                    <p class="font-weight-light small-text">
-                      {" "}
-                      You've been assigned a task by username{" "}
-                    </p>
-                  </div>
-                </a>
-                <a class="dropdown-item preview-item">
-         
-                  <div class="preview-item-content flex-grow py-2">
-                    <p class="preview-subject ellipsis font-weight-medium text-dark">
-                      <b>Viewer</b>{" "}
-                    </p>
-                    <p class="font-weight-light small-text">
-                      {" "}
-                      You've been added as a viewer by username{" "}
-                    </p>
-                  </div>
-                </a>
-        
-              </div>
             </li>
-            {/* <li class="nav-item dropdown">
+            <li class="nav-item dropdown">
               <a
                 class="nav-link count-indicator"
                 id="notificationDropdown"
@@ -154,14 +110,14 @@ export default function TopNav(props) {
                 </a>
               </div>
             </li>
-            */}
+           
             <li class="nav-item dropdown d-none d-xl-inline-block user-dropdown">
               <a class="mr-2">
                 <button class="btn">
                   <FaPowerOff />
                 </button>
               </a>
-              {/* <a
+              <a
                 class="nav-link dropdown-toggle"
                 id="UserDropdown"
                 href="#"
@@ -207,7 +163,7 @@ export default function TopNav(props) {
                   Sign Out<i class="dropdown-item-icon ti-power-off"></i>
                 </a>
               </div>
-             */}
+            
             </li>
           </ul>
           <button
@@ -216,9 +172,57 @@ export default function TopNav(props) {
             data-toggle="offcanvas"
           >
             <span class="mdi mdi-menu"></span>
-          </button>
+          </button> */}
         </div>
       </nav>
     </>
   );
 }
+
+
+
+{/* <div
+class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0"
+aria-labelledby="messageDropdown"
+>
+<a class="dropdown-item py-3">
+  <p class="mb-0 font-weight-medium float-left">
+    You have <b>2</b> new newsfeed updates{" "}
+  </p>
+  <span class="badge badge-pill badge-primary float-right">
+    View all
+  </span>
+</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item preview-item">
+  <div class="preview-thumbnail">
+    <img
+      src="../../../assets/images/faces/face10.jpg"
+      alt="image"
+      class="img-sm profile-pic"
+    />{" "}
+  </div>
+  <div class="preview-item-content flex-grow py-2">
+    <p class="preview-subject ellipsis font-weight-medium text-dark">
+      <b>Task assigned</b>{" "}
+    </p>
+    <p class="font-weight-light small-text">
+      {" "}
+      You've been assigned a task by username{" "}
+    </p>
+  </div>
+</a>
+<a class="dropdown-item preview-item">
+
+  <div class="preview-item-content flex-grow py-2">
+    <p class="preview-subject ellipsis font-weight-medium text-dark">
+      <b>Viewer</b>{" "}
+    </p>
+    <p class="font-weight-light small-text">
+      {" "}
+      You've been added as a viewer by username{" "}
+    </p>
+  </div>
+</a>
+
+</div> */}
