@@ -29,7 +29,11 @@ export default function AllContact() {
             data: doc.data(),
             id: doc.id
           }
+
+          //pushing object for display
           temp.push(obj)
+          
+          //pushing value for comparison
           emailArrayForComparison.push(doc.data().item.EMAIL)
         }
     

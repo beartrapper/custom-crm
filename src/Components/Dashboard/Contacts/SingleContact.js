@@ -11,6 +11,7 @@ export default function SingleContact() {
   const [currentContact, setCurrentContact] = useState(location.state.contact)
   const [currentRecords, setCurrentRecords] = useState([])
   const [currentPage, setCurrentPage] = useState("contact")
+  const [moneySpentByContact, setMoneySpentByContact] = useState(false)
 
   useEffect(() => {
     getSpecificContactSales();
@@ -22,7 +23,8 @@ export default function SingleContact() {
     .get()
     .then(docs => {
       let temp = [];
-
+      let moneySpent = 0;
+      let tempMoney;
       docs.forEach(doc => {
 
           const obj = {
@@ -30,10 +32,17 @@ export default function SingleContact() {
             id: doc.id
           }
           temp.push(obj)
+
+                //pushing value for money-spent
+                tempMoney = doc.data().item.AMOUNT.split(",");
+                //assigning the left side of ","
+                tempMoney = tempMoney[0];
+                moneySpent = moneySpent + parseInt(tempMoney);
     
       })
       console.log(temp)
       setCurrentRecords(temp)
+      setMoneySpentByContact(moneySpent)
 
     })
     .catch(err => {
@@ -59,7 +68,7 @@ export default function SingleContact() {
                 {/* <button className="col-3"></button>
                 <button className="col-3"></button> */}
               </div>
-          {currentPage == "sales" ? <Sales />: <></>}
+          {currentPage == "sales" ? <Sales moneySpent={moneySpentByContact}/>: <></>}
           {currentPage == "contact" ? 
           <>
                 <div class="row">

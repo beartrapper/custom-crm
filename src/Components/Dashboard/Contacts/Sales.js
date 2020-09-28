@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { firestore } from '../../../firebase';
 
-export default function Sales(){
+export default function Sales(props){
 
     
   const location = useLocation();
@@ -39,6 +39,8 @@ export default function Sales(){
   }
 
     return(
+      <>
+        <div className="offset-5 col-1 shadow mb-3 mt-3 pt-4 pb-2 rounded-custom-money bg-primary "><p className="text-center text-white custom-font-size-money">€{props.moneySpent}</p></div>
         <div class="col-lg-12 " style={{ zIndex: "999" }}>
         <div class="card overflow-x-hidden">
           <div class="card-body">
@@ -84,5 +86,7 @@ export default function Sales(){
         </div>
  
       </div>
+    
+    </>
     );
 }

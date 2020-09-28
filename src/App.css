@@ -13604,3 +13604,11 @@ button[type="button"].wj7hLb {
 .overflow-x-hidden {
   overflow-x: scroll;
 }
+
+.rounded-custom-money {
+  border-radius: 30%
+}
+
+.custom-font-size-money {
+  font-size: 1.2em;
+}
